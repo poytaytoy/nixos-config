@@ -99,6 +99,7 @@
   #  wget
     vscode
     git
+    gh
 
   ];
 
