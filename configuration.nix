@@ -49,8 +49,15 @@
   services.xserver.enable = true;
 
   # Enable the KDE Plasma Desktop Environment.
-  services.displayManager.sddm.enable = true;
-  services.desktopManager.plasma6.enable = true;
+  #services.displayManager.sddm.enable = true;
+  #services.desktopManager.plasma6.enable = true;
+
+  #Enable to use gnome
+  services.xserver = {
+    displayManager.gdm.enable = true;
+    desktopManager.gnome.enable = true;
+  }
+
 
   # Configure keymap in X11
   services.xserver.xkb = {
@@ -86,7 +93,7 @@
     description = "Clement";
     extraGroups = [ "networkmanager" "wheel" ];
     packages = with pkgs; [
-      kdePackages.kate
+      #kdePackages.kate
     #  thunderbird
     ];
   };
