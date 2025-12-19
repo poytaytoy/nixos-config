@@ -4,6 +4,8 @@
 
 { config, pkgs, ... }:
 
+#git config --global --add safe.directory /etc/nixos (to unlock it)
+
 {
   imports =
     [ # Include the results of the hardware scan.
@@ -102,11 +104,15 @@
     gh
     fastfetch
     lshw
+    google-chrome 
+    discord-ptb
+    spotify
   ];
 
   programs.vscode = {
     enable = true;
     package = pkgs.vscode.fhs;
+
   };
 
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
@@ -181,27 +187,33 @@
   hardware.nvidia.prime = {
 
     sync.enable = true;
-		# Make sure to use the correct Bus ID values for your system!
-		nvidiaBusId = "PCI:1:0:0";
-		amdgpuBusId = "PCI:66:0:0";
-	};
+  	# Make sure to use the correct Bus ID values for your system!
+  	nvidiaBusId = "PCI:1:0:0";
+  	amdgpuBusId = "PCI:66:0:0";
+  };
 
 
-  #for turning off gpu entirely
-  # boot.extraModprobeConfig = ''
-  # blacklist nouveau
-  # options nouveau modeset=0
-  # '';
+  #for turning off gpu entirely 
+  boot.extraModprobeConfig = ''
+  blacklist nouveau
+  options nouveau modeset=0
+  '';
     
-  # services.udev.extraRules = ''
-  #   # Remove NVIDIA USB xHCI Host Controller devices, if present
-  #   ACTION=="add", SUBSYSTEM=="pci", ATTR{vendor}=="0x10de", ATTR{class}=="0x0c0330", ATTR{power/control}="auto", ATTR{remove}="1"
-  #   # Remove NVIDIA USB Type-C UCSI devices, if present
-  #   ACTION=="add", SUBSYSTEM=="pci", ATTR{vendor}=="0x10de", ATTR{class}=="0x0c8000", ATTR{power/control}="auto", ATTR{remove}="1"
-  #   # Remove NVIDIA Audio devices, if present
-  #   ACTION=="add", SUBSYSTEM=="pci", ATTR{vendor}=="0x10de", ATTR{class}=="0x040300", ATTR{power/control}="auto", ATTR{remove}="1"
-  #   # Remove NVIDIA VGA/3D controller devices
-  #   ACTION=="add", SUBSYSTEM=="pci", ATTR{vendor}=="0x10de", ATTR{class}=="0x03[0-9]*", ATTR{power/control}="auto", ATTR{remove}="1"
-  # '';
-  # boot.blacklistedKernelModules = [ "nouveau" "nvidia" "nvidia_drm" "nvidia_modeset" ];
+  services.udev.extraRules = ''
+    # Remove NVIDIA USB xHCI Host Controller devices, if present
+    ACTION=="add", SUBSYSTEM=="pci", ATTR{vendor}=="0x10de", ATTR{class}=="0x0c0330", ATTR{power/control}="auto", ATTR{remove}="1"
+    # Remove NVIDIA USB Type-C UCSI devices, if present
+    ACTION=="add", SUBSYSTEM=="pci", ATTR{vendor}=="0x10de", ATTR{class}=="0x0c8000", ATTR{power/control}="auto", ATTR{remove}="1"
+    # Remove NVIDIA Audio devices, if present
+    ACTION=="add", SUBSYSTEM=="pci", ATTR{vendor}=="0x10de", ATTR{class}=="0x040300", ATTR{power/control}="auto", ATTR{remove}="1"
+    # Remove NVIDIA VGA/3D controller devices
+    ACTION=="add", SUBSYSTEM=="pci", ATTR{vendor}=="0x10de", ATTR{class}=="0x03[0-9]*", ATTR{power/control}="auto", ATTR{remove}="1"
+  '';
+  boot.blacklistedKernelModules = [ "nouveau" "nvidia" "nvidia_drm" "nvidia_modeset" ];
+
+
+
+
+
+  
 }
