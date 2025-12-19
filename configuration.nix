@@ -213,7 +213,7 @@
 
   stylix.base16Scheme = ”${pkgs.base16-schemes}/share/themes/gruvbox-dark-medium.yaml”;
 
-
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   
 }

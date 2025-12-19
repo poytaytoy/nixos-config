@@ -2,10 +2,10 @@
  
   inputs = {
     # …
-    stylix.url = “github:danth/stylix”;
+    stylix.url = "github:danth/stylix";
   };
  
-  outputs = { nixpkgs, … }@inputs: {
+  outputs = { nixpkgs, ... }@inputs: {
     nixosConfigurations.default = nixpkgs.lib.nixosSystem {
       specialArgs = {inherit inputs;};
       modules = [
