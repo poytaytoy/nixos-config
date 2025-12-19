@@ -211,7 +211,7 @@
   '';
   boot.blacklistedKernelModules = [ "nouveau" "nvidia" "nvidia_drm" "nvidia_modeset" ];
 
-
+  stylix.base16Scheme = ”${pkgs.base16-schemes}/share/themes/gruvbox-dark-medium.yaml”;
 
 
 
