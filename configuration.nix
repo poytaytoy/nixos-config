@@ -131,7 +131,10 @@
     gnomeExtensions.open-bar
     gnome-screenshot
     steam 
-    steam-unwrapped
+    steam-unwrapped 
+    rust-analyzer
+    rustc 
+    cargo 
   ];
 
   programs.steam = {
@@ -143,7 +146,7 @@
 
   programs.vscode = {
     enable = true;
-    package = pkgs.vscode.fhs;
+    package = pkgs.vscode.fhsWithPackages (ps: with ps; [ rustup zlib openssl.dev pkg-config ]);
 
   };
 
