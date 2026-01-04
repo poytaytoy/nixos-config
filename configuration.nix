@@ -137,6 +137,8 @@
     rust-analyzer
     rustc 
     cargo 
+    racket 
+    texlive.combined.scheme-full
   ];
 
   programs.steam = {
