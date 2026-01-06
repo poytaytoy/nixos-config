@@ -30,7 +30,7 @@
     xz
     unzip
     p7zip
-    vscodew
+    vscode
     git
     gh
     fastfetch
