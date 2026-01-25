@@ -45,8 +45,6 @@
     gnomeExtensions.space-bar
     gnomeExtensions.open-bar
     gnome-screenshot
-    steam 
-    steam-unwrapped 
     rust-analyzer
     rustc 
     cargo 
@@ -62,7 +60,9 @@
       obs-vkcapture
     ];
     })
-
+    typst 
+    tinymist 
+    caligula 
   ];
 
   # basic configuration of git, please change to your own

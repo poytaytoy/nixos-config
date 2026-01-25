@@ -22,6 +22,32 @@
   # networking.proxy.default = "http://user:password@proxy:port/";
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
+
+
+  stylix.base16Scheme = ”${pkgs.base16-schemes}/share/themes/gruvbox-dark-medium.yaml”;
+  
+  # OR
+  
+  stylix.base16Scheme = {
+    base00 = “282828”;
+    base01 = “3c3836”;
+    base02 = “504945”;
+    base03 = “665c54”;
+    base04 = “bdae93”;
+    base05 = “d5c4a1”;
+    base06 = “ebdbb2”;
+    base07 = “fbf1c7”;
+    base08 = “fb4934”;
+    base09 = “fe8019”;
+    base0A = “fabd2f”;
+    base0B = “b8bb26”;
+    base0C = “8ec07c”;
+    base0D = “83a598”;
+    base0E = “d3869b”;
+    base0F = “d65d0e”;
+  };
+
+
   # Enable networking
   networking.networkmanager.enable = true;
 
@@ -103,6 +129,8 @@
     extraGroups = [ "networkmanager" "wheel" ];
     packages = with pkgs; [
     #  thunderbird
+    steam 
+    steam-unwrapped 
     ];
   };
 
@@ -168,22 +196,23 @@
   	amdgpuBusId = "PCI:66:0:0";
   };
 
+  # boot.extraModprobeConfig = ''
+  #     blacklist nouveau
+  #     options nouveau modeset=0
+  #     '';
 
-  boot.extraModprobeConfig = ''
-      blacklist nouveau
-      options nouveau modeset=0
-      '';
-
-  services.udev.extraRules = ''
-        # Remove NVIDIA USB xHCI Host Controller devices, if present
-        ACTION=="add", SUBSYSTEM=="pci", ATTR{vendor}=="0x10de", ATTR{class}=="0x0c0330", ATTR{power/control}="auto", ATTR{remove}="1"
-        # Remove NVIDIA USB Type-C UCSI devices, if present
-        ACTION=="add", SUBSYSTEM=="pci", ATTR{vendor}=="0x10de", ATTR{class}=="0x0c8000", ATTR{power/control}="auto", ATTR{remove}="1"
-        # Remove NVIDIA Audio devices, if present
-        ACTION=="add", SUBSYSTEM=="pci", ATTR{vendor}=="0x10de", ATTR{class}=="0x040300", ATTR{power/control}="auto", ATTR{remove}="1"
-        # Remove NVIDIA VGA/3D controller devices
-        ACTION=="add", SUBSYSTEM=="pci", ATTR{vendor}=="0x10de", ATTR{class}=="0x03[0-9]*", ATTR{power/control}="auto", ATTR{remove}="1"
-  '';
-  boot.blacklistedKernelModules = [ "nouveau" "nvidia" "nvidia_drm" "nvidia_modeset" ];
+  # services.udev.extraRules = ''
+  #       # Remove NVIDIA USB xHCI Host Controller devices, if present
+  #       ACTION=="add", SUBSYSTEM=="pci", ATTR{vendor}=="0x10de", ATTR{class}=="0x0c0330", ATTR{power/control}="auto", ATTR{remove}="1"
+  #       # Remove NVIDIA USB Type-C UCSI devices, if present
+  #       ACTION=="add", SUBSYSTEM=="pci", ATTR{vendor}=="0x10de", ATTR{class}=="0x0c8000", ATTR{power/control}="auto", ATTR{remove}="1"
+  #       # Remove NVIDIA Audio devices, if present
+  #       ACTION=="add", SUBSYSTEM=="pci", ATTR{vendor}=="0x10de", ATTR{class}=="0x040300", ATTR{power/control}="auto", ATTR{remove}="1"
+  #       # Remove NVIDIA VGA/3D controller devices
+  #       ACTION=="add", SUBSYSTEM=="pci", ATTR{vendor}=="0x10de", ATTR{class}=="0x03[0-9]*", ATTR{power/control}="auto", ATTR{remove}="1"
+  # '';
+  # boot.blacklistedKernelModules = [ "nouveau" "nvidia" "nvidia_drm" "nvidia_modeset" ];
 
 }
+
+#sudo nixos-rebuild switch --flake /home/poytaytoy/nixos 

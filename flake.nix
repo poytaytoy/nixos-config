@@ -3,6 +3,7 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.11";
+    stylix.url = “github:danth/stylix”;
     home-manager = {
       url = "github:nix-community/home-manager/release-25.11";
       # The `follows` keyword in inputs is used for inheritance.
@@ -17,6 +18,7 @@
     nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
       modules = [
         ./configuration.nix
+        inputs.stylix.nixosModules.stylix
         home-manager.nixosModules.home-manager
           {
             home-manager.useGlobalPkgs = true;
