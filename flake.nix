@@ -2,7 +2,7 @@
   description = "system nixos flake";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.11";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     stylix.url = "github:danth/stylix";
     ghostty.url = "github:ghostty-org/ghostty";
     home-manager = {
