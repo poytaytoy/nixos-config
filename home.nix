@@ -50,6 +50,7 @@
     cargo 
     racket 
     texlive.combined.scheme-full
+    antigravity-nix.packages.x86_64-linux.default
     (pkgs.wrapOBS {
     plugins = with pkgs.obs-studio-plugins; [
       wlrobs

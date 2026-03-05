@@ -5,6 +5,10 @@
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     stylix.url = "github:danth/stylix";
     ghostty.url = "github:ghostty-org/ghostty";
+    antigravity-nix = {
+      url = "github:jacopone/antigravity-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     home-manager = {
       url = "github:nix-community/home-manager/release-25.11";
       # The `follows` keyword in inputs is used for inheritance.
@@ -15,7 +19,7 @@
     };
   };
 
-  outputs = { self, nixpkgs, home-manager, ghostty, ... }@inputs: {
+  outputs = { self, nixpkgs, home-manager, ghostty, antigravity-nix,... }@inputs: {
     nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
       modules = [
         ./configuration.nix
