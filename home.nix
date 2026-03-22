@@ -30,7 +30,6 @@
       xz
       unzip
       p7zip
-      vscode
       git
       gh
       fastfetch
@@ -83,6 +82,22 @@
     #
     # You can update home Manager without changing this value. See
     # the home Manager release notes for a list of state version
-    # changes in each release.
+
+    programs.vscode = {
+      enable = true;
+      package = pkgs.vscode.fhsWithPackages (ps: with ps; [ rustup zlib openssl.dev pkg-config ]);
+      extensions = with pkgs.vscode-extensions; [
+        aaron-bond.better-comments
+        bbenoist.nix
+        github.copilot
+        github.copilot-chat
+        haskell.haskell
+        jnoortheen.nix-ide
+        justusadam.language-haskell
+        ms-vscode-remote.remote-containers
+        myriad-dreamin.tinymist
+      ];
+    };
+    
     home.stateVersion = "25.11";
   }

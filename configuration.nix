@@ -162,11 +162,6 @@
     localNetworkGameTransfers.openFirewall = true; # Open ports in the firewall for Steam Local Network Game Transfers
   };
 
-  programs.vscode = {
-    enable = true;
-    package = pkgs.vscode.fhsWithPackages (ps: with ps; [ rustup zlib openssl.dev pkg-config ]);
-
-  };
 
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
 
