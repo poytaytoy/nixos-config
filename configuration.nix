@@ -222,6 +222,8 @@
   }];
 
   zramSwap.enable = true; # Creates a zram block device and uses it as a swap device
+
+  programs.nix-ld.enable = true;
 }
 
 #sudo nixos-rebuild switch --flake /home/poytaytoy/nixos 
