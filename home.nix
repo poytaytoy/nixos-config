@@ -1,8 +1,12 @@
   { config, pkgs, inputs, ... }:
 
   {
-    imports = ["./ghosty.nix"];
-    
+    imports = 
+      [
+      ./ghostty.nix
+      ./vscode.nix
+      ];
+
     home.username = "poytaytoy";
     home.homeDirectory = "/home/poytaytoy";
 
@@ -30,8 +34,7 @@
       cargo 
       racket 
       texlive.combined.scheme-full
-      inputs.antigravity-nix.packages.x86_64-linux.default
-      inputs.ghostty
+      inputs.antigravity-nix.packages.x86_64-linux.default 
       (pkgs.wrapOBS {
       plugins = with pkgs.obs-studio-plugins; [
         wlrobs
@@ -46,29 +49,12 @@
       tinymist 
       caligula 
       devenv
-    
     ];
 
     programs.git = {
       enable = true;
       userName = "Clement Chung";
       userEmail = "clementcycc8@gmail.com";
-    };
-
-    programs.vscode = {
-      enable = true;
-      package = pkgs.vscode.fhsWithPackages (ps: with ps; [ rustup zlib openssl.dev pkg-config ]);
-      extensions = with pkgs.vscode-extensions; [
-        aaron-bond.better-comments
-        bbenoist.nix
-        github.copilot
-        github.copilot-chat
-        haskell.haskell
-        jnoortheen.nix-ide
-        justusadam.language-haskell
-        ms-vscode-remote.remote-containers
-        myriad-dreamin.tinymist
-      ];
     };
     
     home.stateVersion = "25.11";

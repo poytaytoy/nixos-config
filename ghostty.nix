@@ -1,7 +1,7 @@
-{ inputs, ... }:
+{ ... }:
 
 {
-  inputs.ghostty = {
+  programs.ghostty = {
     enable = true;
 
     settings = {
