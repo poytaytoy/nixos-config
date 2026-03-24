@@ -1,11 +1,13 @@
 { config, pkgs, ... }:
 
 {
+  FOLDER = "sys";
+
   imports =
     [
-      ./configs/hardware-configuration.nix
-      ./configs/nvidia.nix 
-      ./configs/stylix.nix 
+      ./${FOLDER}/hardware-configuration.nix
+      ./${FOLDER}/nvidia.nix 
+      ./${FOLDER}/stylix.nix 
     ];
 
   boot.loader.systemd-boot.enable = true;

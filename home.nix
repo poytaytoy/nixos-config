@@ -1,10 +1,11 @@
   { config, pkgs, inputs, ... }:
 
   {
+    FOLDER = "configs";
     imports = 
       [
-      ./programs/ghostty.nix
-      ./programs/vscode.nix
+      ./${FOLDER}/ghostty.nix
+      ./${FOLDER}/vscode.nix
       ];
 
     home.username = "poytaytoy";
