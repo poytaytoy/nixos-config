@@ -3,8 +3,8 @@
   {
     imports = 
       [
-      ./ghostty.nix
-      ./vscode.nix
+      ./programs/ghostty.nix
+      ./programs/vscode.nix
       ];
 
     home.username = "poytaytoy";
@@ -35,6 +35,7 @@
       racket 
       texlive.combined.scheme-full
       inputs.antigravity-nix.packages.x86_64-linux.default 
+      claude-code
       (pkgs.wrapOBS {
       plugins = with pkgs.obs-studio-plugins; [
         wlrobs
@@ -45,6 +46,8 @@
         obs-vkcapture
       ];
       })
+      claude-code
+      libreoffice-fresh
       typst 
       tinymist 
       caligula 

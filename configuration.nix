@@ -3,9 +3,9 @@
 {
   imports =
     [
-      ./hardware-configuration.nix
-      ./nvidia.nix 
-      ./stylix.nix 
+      ./configs/hardware-configuration.nix
+      ./configs/nvidia.nix 
+      ./configs/stylix.nix 
     ];
 
   boot.loader.systemd-boot.enable = true;
