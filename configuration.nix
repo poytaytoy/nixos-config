@@ -1,9 +1,8 @@
 { config, pkgs, ... }:
 
 {
-  FOLDER = "sys";
 
-  imports =
+  imports = let FOLDER = "sys"; in
     [
       ./${FOLDER}/hardware-configuration.nix
       ./${FOLDER}/nvidia.nix 

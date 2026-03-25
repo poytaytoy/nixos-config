@@ -1,8 +1,7 @@
   { config, pkgs, inputs, ... }:
 
   {
-    FOLDER = "configs";
-    imports = 
+    imports = let FOLDER = "configs"; in
       [
       ./${FOLDER}/ghostty.nix
       ./${FOLDER}/vscode.nix
