@@ -25,6 +25,10 @@
       justusadam.language-haskell
       ms-vscode-remote.remote-containers
       myriad-dreamin.tinymist
+      eugleo.magic-racket
+      rust-lang.rust-analyzer
     ];
   };
+
+   xdg.configFile."Code/User/settings.json".enable = false;
 }
