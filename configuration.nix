@@ -7,6 +7,7 @@
       ./${FOLDER}/hardware-configuration.nix
       ./${FOLDER}/nvidia.nix 
       ./${FOLDER}/stylix.nix 
+      ./specialization/to-go.nix 
     ];
 
   boot.loader.systemd-boot.enable = true;

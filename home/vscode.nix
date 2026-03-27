@@ -10,11 +10,6 @@
       pkg-config
     ]);
 
-    userSettings = {
-      "workbench.colorTheme" = lib.mkForce "Monokai";
-      "files.autoSave" = "afterDelay";
-    };
-
     extensions = with pkgs.vscode-extensions; [
       aaron-bond.better-comments
       bbenoist.nix

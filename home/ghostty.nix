@@ -35,28 +35,31 @@
 
       # Key bindings
       keybind = [
-    # Split navigation (ctrl + hjkl)
-    "ctrl+h=goto_split:left"
-    "ctrl+j=goto_split:bottom"
-    "ctrl+k=goto_split:top"
-    "ctrl+l=goto_split:right"
-    # Split creation (ctrl + shift + hjkl)
-    "ctrl+shift+h=new_split:left"
-    "ctrl+shift+j=new_split:down"
-    "ctrl+shift+k=new_split:up"
-    "ctrl+shift+l=new_split:right"
-    # Tab navigation (ctrl + alt + arrow)
-    "alt+left=previous_tab"
-    "alt+right=next_tab"
-    # Misc
-    "super+shift+enter=new_split:auto"
-    "super+shift+i=inspector:toggle"
-    "super+shift+r=reload_config"
-    "ctrl+t=new_tab"
-    "ctrl+w=close_surface"
-    "ctrl+shift+w=close_tab"
-    "ctrl+q=quit"
-  ];
+        # Split navigation (ctrl + hjkl)
+        "ctrl+h=goto_split:left"
+        "ctrl+j=goto_split:bottom"
+        "ctrl+k=goto_split:top"
+        "ctrl+l=goto_split:right"
+
+        # Split creation (ctrl + shift + hjkl)
+        "ctrl+shift+h=new_split:left"
+        "ctrl+shift+j=new_split:down"
+        "ctrl+shift+k=new_split:up"
+        "ctrl+shift+l=new_split:right"
+
+        # Tab navigation (ctrl + alt + arrow)
+        "alt+left=previous_tab"
+        "alt+right=next_tab"
+        
+        # Misc
+        "super+shift+enter=new_split:auto"
+        "super+shift+i=inspector:toggle"
+        "super+shift+r=reload_config"
+        "ctrl+t=new_tab"
+        "ctrl+w=close_surface"
+        "ctrl+shift+w=close_tab"
+        "ctrl+q=quit"
+      ];
     };
   };
 }
