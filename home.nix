@@ -22,6 +22,8 @@
       google-chrome 
       discord-ptb
       spotify
+
+      #gnome extensions 
       gnomeExtensions.blur-my-shell
       gnomeExtensions.dash-to-dock
       gnomeExtensions.vitals
@@ -29,6 +31,7 @@
       gnomeExtensions.space-bar
       gnomeExtensions.open-bar
       gnome-screenshot
+      
       rust-analyzer
       rustc 
       cargo 
