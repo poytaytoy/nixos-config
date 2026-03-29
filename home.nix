@@ -5,7 +5,7 @@
       [
       ./${FOLDER}/ghostty.nix
       ./${FOLDER}/vscode.nix
-      ./${FOLDER}/gnome-packages.nix
+      ./${FOLDER}/gnome-extensions.nix
       ./${FOLDER}/git.nix
       ];
 

@@ -2,7 +2,7 @@
 
 {
 
-  imports = let FOLDER = "sys"; in
+  imports = let FOLDER = "configuration"; in
     [
       ./${FOLDER}/hardware-configuration.nix
       ./${FOLDER}/nvidia.nix 
@@ -100,6 +100,8 @@
   environment.systemPackages = with pkgs; [
   vim 
   distrobox 
+  gcc 
+  binutils
   ];
 
   programs.bash.completion.enable = true;
