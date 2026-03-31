@@ -100,7 +100,7 @@
   environment.systemPackages = with pkgs; [
   vim 
   distrobox 
-  gcc 
+  libgcc 
   binutils
   ];
 
@@ -114,6 +114,9 @@
   };
 
   programs.firefox.enable = true;
+
+  programs.direnv.enable = true;
+  programs.direnv.nix-directives.enable = true;  # optional, for nix shell integration
 
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
   system.stateVersion = "25.11"; 
