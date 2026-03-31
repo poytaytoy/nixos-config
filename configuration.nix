@@ -102,6 +102,7 @@
   distrobox 
   libgcc 
   binutils
+  nvd 
   ];
 
   programs.bash.completion.enable = true;
@@ -116,10 +117,6 @@
   programs.firefox.enable = true;
 
   programs.direnv.enable = true;
-
-  programs.bash.shellAliases = {
-    config = "bash ~/Documents/nixos-config/update.sh";
-  };
 
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
   system.stateVersion = "25.11"; 
