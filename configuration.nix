@@ -6,7 +6,6 @@
     [
       ./${FOLDER}/hardware-configuration.nix
       ./${FOLDER}/nvidia.nix 
-      ./${FOLDER}/stylix.nix 
       ./specialization/to-go.nix 
     ];
 
@@ -93,6 +92,7 @@
   libgcc 
   binutils
   nvd 
+  nh
   ];
 
   programs.bash.completion.enable = true;

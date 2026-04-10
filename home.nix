@@ -5,7 +5,6 @@
       [
       ./${FOLDER}/ghostty.nix
       ./${FOLDER}/vscode.nix
-     
       ./${FOLDER}/git.nix
       ];
 
@@ -70,9 +69,4 @@
           ];
         })
       ];
-
-      (if de == "gnome" then {
-        home.packages = [ pkgs.gnome-screenshot ];
-        imports = [ ./home/gnome-extensions.nix ];
-      } else {})
   }

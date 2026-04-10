@@ -10,7 +10,7 @@
     };
   };
 
-  outputs = { self, nixpkgs, home-manager, ... }@inputs: {
+  outputs = { self, nixpkgs, home-manager, ... }@inputs: 
 
     let 
       de = "gnome"; 
@@ -26,8 +26,8 @@
               home-manager.users.poytaytoy = import ./home.nix;
               home-manager.extraSpecialArgs = { inherit inputs de; };
             }
-        ] ++ (if de == "gnome" then [./gnome.nix] else []);
+        ] ++ [./de/${de}.nix];
       };
-    }
+    
   };
 }
