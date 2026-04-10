@@ -12,21 +12,20 @@
 
   outputs = { self, nixpkgs, home-manager, ... }@inputs: 
 
-    let 
-      de = "gnome"; 
-    in {
+    {
       nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
         modules = [
           ./configuration.nix
+          ./de/cosmic.nix
           inputs.stylix.nixosModules.stylix
           home-manager.nixosModules.home-manager
             {
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
               home-manager.users.poytaytoy = import ./home.nix;
-              home-manager.extraSpecialArgs = { inherit inputs de; };
+              home-manager.extraSpecialArgs = { inherit inputs ; };
             }
-        ] ++ [./de/${de}.nix];
+        ];
       };
     
   };
