@@ -11,18 +11,23 @@
   };
 
   outputs = { self, nixpkgs, home-manager, ... }@inputs: {
-    nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
-      modules = [
-        ./configuration.nix
-        inputs.stylix.nixosModules.stylix
-        home-manager.nixosModules.home-manager
-          {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.users.poytaytoy = import ./home.nix;
-            home-manager.extraSpecialArgs = { inherit inputs; };
-          }
-      ];
-    };
+
+    let 
+      de = "gnome"; 
+    in {
+      nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
+        modules = [
+          ./configuration.nix
+          inputs.stylix.nixosModules.stylix
+          home-manager.nixosModules.home-manager
+            {
+              home-manager.useGlobalPkgs = true;
+              home-manager.useUserPackages = true;
+              home-manager.users.poytaytoy = import ./home.nix;
+              home-manager.extraSpecialArgs = { inherit inputs de; };
+            }
+        ] ++ (if de == "gnome" then [./gnome.nix] else []);
+      };
+    }
   };
 }

@@ -1,11 +1,11 @@
-  { config, pkgs, inputs, ... }:
+  { config, pkgs, inputs, de, ... }:
 
   { 
     imports = let FOLDER = "home"; in
       [
       ./${FOLDER}/ghostty.nix
       ./${FOLDER}/vscode.nix
-      ./${FOLDER}/gnome-extensions.nix
+     
       ./${FOLDER}/git.nix
       ];
 
@@ -57,7 +57,6 @@
         spotify
 
         # Utilities
-        gnome-screenshot
         caligula
 
         (pkgs.wrapOBS {
@@ -71,4 +70,9 @@
           ];
         })
       ];
+
+      (if de == "gnome" then {
+        home.packages = [ pkgs.gnome-screenshot ];
+        imports = [ ./home/gnome-extensions.nix ];
+      } else {})
   }

@@ -38,17 +38,7 @@
       enable = true;
       wayland = true;
     };
-    desktopManager.gnome = {
-      enable = true;
-      extraGSettingsOverridePackages = [ pkgs.mutter ];
-      extraGSettingsOverrides = ''
-        [org.gnome.mutter]
-        experimental-features=['scale-monitor-framebuffer']
-      '';
-    };
   };
-
-  services.gnome.gnome-keyring.enable = true;
   
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
@@ -120,4 +110,11 @@
 
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
   system.stateVersion = "25.11"; 
+
+  swapDevices = [{
+    device = "/var/lib/swapfile";
+    size = 16*1024; # 16 GB
+  }];
+
+  zramSwap.enable = true; # Creates a zram block device and uses it as a swap device
   }
