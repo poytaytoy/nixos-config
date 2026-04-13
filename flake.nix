@@ -16,7 +16,7 @@
       nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
         modules = [
           ./configuration.nix
-          ./de/cosmic.nix
+          ./de/gnome.nix
           inputs.stylix.nixosModules.stylix
           home-manager.nixosModules.home-manager
             {

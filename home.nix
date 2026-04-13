@@ -68,5 +68,7 @@
             obs-vkcapture
           ];
         })
+
+        prismlauncher 
       ];
   }

@@ -88,12 +88,14 @@
 
   environment.systemPackages = with pkgs; [
   vim 
-  distrobox 
+  distrobox  
   libgcc 
   binutils
   nvd 
   nh
+  flatpak
   ];
+
 
   programs.bash.completion.enable = true;
 
