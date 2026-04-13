@@ -91,10 +91,10 @@
   distrobox  
   libgcc 
   binutils
-  nvd 
   nh
-  flatpak
   ];
+
+  services.flatpak.enable = true;
 
 
   programs.bash.completion.enable = true;

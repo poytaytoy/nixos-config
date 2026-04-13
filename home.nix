@@ -50,6 +50,7 @@
         # AI
         claude-code
 
+
         # Media & Communication
         google-chrome
         discord-ptb
