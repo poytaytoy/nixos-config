@@ -38,14 +38,14 @@
         rust-analyzer
         rustc
         cargo
-        racket
+        #racket
         devenv
 
         # Documents & Typesetting
-        texlive.combined.scheme-full
-        libreoffice-fresh
-        typst
-        tinymist
+        #texlive.combined.scheme-full
+        #libreoffice-fresh
+        #typst
+        #tinymist
 
         # AI
         claude-code
@@ -57,18 +57,18 @@
         spotify
 
         # Utilities
-        caligula
+        #caligula
 
-        (pkgs.wrapOBS {
-          plugins = with pkgs.obs-studio-plugins; [
-            wlrobs
-            obs-backgroundremoval
-            obs-pipewire-audio-capture
-            obs-vaapi
-            obs-gstreamer
-            obs-vkcapture
-          ];
-        })
+        # (pkgs.wrapOBS {
+        #   plugins = with pkgs.obs-studio-plugins; [
+        #     wlrobs
+        #     obs-backgroundremoval
+        #     obs-pipewire-audio-capture
+        #     obs-vaapi
+        #     obs-gstreamer
+        #     obs-vkcapture
+        #   ];
+        # })
 
         prismlauncher 
       ];
