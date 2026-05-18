@@ -35,18 +35,7 @@ stage_git() {
 do_dry_run() {
     info "Dry-run: evaluating config (no switch)"
     cd "$FLAKE_DIR"
-    nix build \
-        ".#nixosConfigurations.$(hostname).config.system.build.toplevel" \
-        --dry-run \
-        --no-link \
-        2>&1 | tee /tmp/nixos-dry-run.log
-    if grep -q "will be fetched" /tmp/nixos-dry-run.log || \
-       grep -q "will be built"   /tmp/nixos-dry-run.log; then
-        warn "Packages that would be fetched or built:"
-        grep -E "will be (fetched|built)" /tmp/nixos-dry-run.log || true
-    else
-        success "Nothing new to build — config is already up to date"
-    fi
+    nh test . -n --diff  
 }
 
 do_diff() {
@@ -62,28 +51,17 @@ do_diff() {
 }
 
 do_gc() {
-    info "Garbage-collecting old generations"
-    echo
-    echo "Current generations:"
-    sudo nix-env --list-generations --profile /nix/var/nix/profiles/system
-    echo
-    warn "This will delete all non-current generations."
-    read -rp "Continue? [y/N] " yn
-    [[ "$yn" =~ ^[Yy]$ ]] || { echo "Aborted."; return; }
-    sudo nix-collect-garbage -d
-    sudo /run/current-system/bin/switch-to-configuration boot
-    success "Garbage collection complete"
-    echo
-    echo "Remaining generations:"
-    sudo nix-env --list-generations --profile /nix/var/nix/profiles/system
+    info "Cleaning up generations" 
+    read -p "Delete generations up to: " num
+    nh clean all --keep $num
 }
 
 do_switch() {
     info "Rebuilding and switching to new config"
     cd "$FLAKE_DIR"
-    sudo nixos-rebuild switch --flake "${FLAKE_TARGET}"
+    nh os build "${FLAKE_TARGET}"
     success "Switch complete — now running generation $(
-        nixos-rebuild list-generations 2>/dev/null | tail -1 | awk '{print $1}' || echo '?'
+        nixos-rebuild list-generations 2>/dev/null  | tail -1 | awk '{print $1}' || echo '?'
     )"
 }
 

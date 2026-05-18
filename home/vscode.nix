@@ -6,7 +6,7 @@
     package = pkgs.vscode.fhsWithPackages (ps: with ps; [
       rustup
       zlib
-      #openssl.dev
+      openssl.dev
       pkg-config
     ]);
 
@@ -22,6 +22,9 @@
       myriad-dreamin.tinymist
       eugleo.magic-racket
       rust-lang.rust-analyzer
+      yzhang.markdown-all-in-one
+      jdinhlife.gruvbox
+
     ];
   };
 

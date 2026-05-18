@@ -3,8 +3,8 @@
 {
 
   imports = let FOLDER = "configuration"; in
-    [
-      ./${FOLDER}/hardware-configuration.nix
+    [ 
+      ./${FOLDER}/hardware-configuration.nix 
       ./${FOLDER}/nvidia.nix 
       ./specialization/to-go.nix 
     ];
@@ -60,7 +60,8 @@
   users.users.poytaytoy = {
     isNormalUser = true;
     description = "Clement";
-    extraGroups = [ "networkmanager" "wheel" "podman" ];
+    group = "poytaytoy";
+    extraGroups = [ "networkmanager" "wheel" "docker" ];
     packages = with pkgs; [
     steam 
     steam-unwrapped 
@@ -79,11 +80,12 @@
       ];
   };
 
+  users.groups.poytaytoy = {};
+
   nixpkgs.config.allowUnfree = true;
 
-  virtualisation.podman = {
+  virtualisation.docker = {
   enable = true;
-  dockerCompat = true;
   };
 
   environment.systemPackages = with pkgs; [
@@ -91,7 +93,8 @@
   distrobox  
   libgcc 
   binutils
-  nh
+  nvd
+  micro 
   ];
 
   services.flatpak.enable = true;
@@ -106,6 +109,13 @@
     localNetworkGameTransfers.openFirewall = true; 
   };
 
+  programs.nh = {
+    enable = true;
+    clean.enable = true;
+    clean.extraArgs = "--keep-since 7d --keep 5";
+    flake = "~/Documents/nixos-config"; # sets NH_OS_FLAKE variable for you
+  };
+
   programs.firefox.enable = true;
 
   programs.direnv.enable = true;
@@ -117,6 +127,10 @@
     device = "/var/lib/swapfile";
     size = 16*1024; # 16 GB
   }];
+
+  nixpkgs.config.permittedInsecurePackages = [
+                "openssl-1.1.1w"
+  ];  
 
   zramSwap.enable = true; # Creates a zram block device and uses it as a swap device
   }

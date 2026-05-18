@@ -58,7 +58,6 @@
         "ctrl+t=new_tab"
         "ctrl+w=close_surface"
         "ctrl+shift+w=close_tab"
-        "ctrl+q=quit"
       ];
     };
   };
