@@ -35,7 +35,6 @@
     enable = true;
     displayManager.gdm = {
       enable = true;
-      wayland = true;
     };
   };
   
@@ -126,11 +125,7 @@
   swapDevices = [{
     device = "/var/lib/swapfile";
     size = 16*1024; # 16 GB
-  }];
-
-  nixpkgs.config.permittedInsecurePackages = [
-                "openssl-1.1.1w"
-  ];  
+  }];  
 
   zramSwap.enable = true; # Creates a zram block device and uses it as a swap device
   }

@@ -11,17 +11,6 @@ success() { echo "✓  $*"; }
 warn()    { echo "!  $*"; }
 die()     { echo "✗  $*" >&2; exit 1; }
 
-check_deps() {
-    local missing=()
-    command -v nvd          &>/dev/null || missing+=("nvd (nix-community/nvd — for --diff)")
-    command -v nix          &>/dev/null || missing+=("nix")
-    command -v nixos-rebuild &>/dev/null || missing+=("nixos-rebuild")
-    if [[ ${#missing[@]} -gt 0 ]]; then
-        warn "Missing optional/required tools:"
-        printf '   %s\n' "${missing[@]}"
-        echo
-    fi
-}
 
 stage_git() {
     info "Staging all changes in $FLAKE_DIR"
@@ -35,19 +24,7 @@ stage_git() {
 do_dry_run() {
     info "Dry-run: evaluating config (no switch)"
     cd "$FLAKE_DIR"
-    nh test . -n --diff  
-}
-
-do_diff() {
-    info "Diffing current system vs new closure"
-    cd "$FLAKE_DIR"
-    command -v nvd &>/dev/null || die "'nvd' not found. Install it: nix profile install nixpkgs#nvd"
-    local new_drv
-    new_drv=$(nix build \
-        ".#nixosConfigurations.$(hostname).config.system.build.toplevel" \
-        --no-link \
-        --print-out-paths 2>/dev/null)
-    nvd diff /run/current-system "$new_drv"
+    nh os test . -n   
 }
 
 do_gc() {
@@ -59,11 +36,10 @@ do_gc() {
 do_switch() {
     info "Rebuilding and switching to new config"
     cd "$FLAKE_DIR"
-    nh os build "${FLAKE_TARGET}"
-    success "Switch complete — now running generation $(
-        nixos-rebuild list-generations 2>/dev/null  | tail -1 | awk '{print $1}' || echo '?'
-    )"
+    nh os switch . 
+    success "Switch complete"
 }
+
 
 do_update() {
     info "Updating flake inputs"
@@ -95,11 +71,9 @@ Examples:
 EOF
 }
 
+
 # ── main ──────────────────────────────────────────────────────────────────────
-
 [[ $# -eq 0 ]] && { usage; exit 0; }
-
-check_deps
 
 RUN_DRY=0; RUN_DIFF=0; RUN_GC=0; RUN_SWITCH=0; RUN_UPDATE=0
 

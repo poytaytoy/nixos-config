@@ -8,9 +8,13 @@
       url = "github:nix-community/home-manager/master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    antigravity-nix = {
+          url = "github:jacopone/antigravity-nix";
+          inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { self, nixpkgs, home-manager, ... }@inputs: 
+  outputs = { self, nixpkgs, home-manager, antigravity-nix, ... }@inputs: 
 
     {
       nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
@@ -23,7 +27,7 @@
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
               home-manager.users.poytaytoy = import ./home.nix;
-              home-manager.extraSpecialArgs = { inherit inputs ; };
+              home-manager.extraSpecialArgs = { inherit inputs antigravity-nix; };
             }
         ];
       };

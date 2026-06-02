@@ -3,7 +3,7 @@
 {
   stylix.enable = true;
   stylix.targets.gnome.enable = true;
-
+  stylix.targets.kmscon.enable = false;
   stylix.base16Scheme = {
     base00 = "282828";
     base01 = "3c3836";
@@ -35,7 +35,7 @@
     };
 
   #services.gnome.gnome-keyring.enable = true; 
-
+ 
   environment.systemPackages = with pkgs.gnomeExtensions; [
     blur-my-shell
     dash-to-dock

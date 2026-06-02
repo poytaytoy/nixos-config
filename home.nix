@@ -1,4 +1,4 @@
-  { config, pkgs, inputs, de, ... }:
+  { config, pkgs, inputs, de, antigravity-nix, lib, ... }:
 
   { 
     imports = let FOLDER = "home"; in
@@ -6,6 +6,7 @@
       ./${FOLDER}/ghostty.nix
       ./${FOLDER}/vscode.nix
       #./${FOLDER}/git.nix
+      ./${FOLDER}/terminal.nix
       ];
 
 
@@ -15,8 +16,8 @@
 
     home.username = "poytaytoy";
     home.homeDirectory = "/home/poytaytoy";
-    home.stateVersion = "25.11";
-
+	  home.stateVersion = "25.11";
+	
     home.packages =
       with pkgs; [
 
@@ -49,7 +50,7 @@
 
         # AI
         claude-code
-
+		    antigravity-nix.packages.x86_64-linux.google-antigravity-ide		
 
         # Media & Communication
         google-chrome
